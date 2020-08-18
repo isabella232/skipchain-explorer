@@ -1,9 +1,9 @@
 import { Message } from 'protobufjs/light'
 import { EMPTY_BUFFER, registerMessage, addJSON } from '@dedis/cothority/protobuf'
-import models from './models.json'
+// import models from './models.json'
 import project from './project.json'
 
-addJSON(models)
+// addJSON(models)
 addJSON(project)
 
 export class Transaction extends Message {
@@ -44,8 +44,8 @@ export class ProjectData extends Message {
   }
 }
 
-Transaction.register()
-Footer.register()
-Election.register()
-Ballot.register()
+// Transaction.register()
+// Footer.register()
+// Election.register()
+// Ballot.register()
 ProjectData.register()

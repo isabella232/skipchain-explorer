@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import { StatusResponse, Status } from '@dedis/cothority/status/proto'
-import { Roster, ServerIdentity } from '@dedis/cothority/network/proto'
+import { Roster, ServerIdentity } from '@dedis/cothority/network'
 const assert = require('assert')
 const Vue = require('./Vue')
 const StatusTable = require('../../src/components/status/StatusTable.vue').default

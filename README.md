@@ -55,3 +55,14 @@ yarn run build
 yarn pretest --fix
 yarn test
 ```
+
+## Production deployment
+
+A change on the production branch automatically triggers a deployment on
+[https://status.dedis.ch](https://status.dedis.ch).
+
+The production branch must only be used that way:
+
+```bash
+# Trigger a deployment:
+git push origin master:production

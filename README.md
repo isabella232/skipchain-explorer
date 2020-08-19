@@ -1,8 +1,11 @@
-# student_18_explorer
+# Skipchain explorer
+
+[![DEDIS deployment](https://github.com/dedis/skipchain-explorer/workflows/DEDIS%20deployment/badge.svg)](https://github.com/dedis/skipchain-explorer/actions?query=workflow%3A%22DEDIS+deployment%22)
+[![build](https://img.shields.io/travis/dedis/student_18_explorer.svg)](https://travis-ci.org/dedis/student_18_explorer)
+
+This is the maintained version of the [student project](https://github.com/dedis/student_18_explorer).
 
 ## A Skipchain Explorer
-
-[![build](https://img.shields.io/travis/dedis/student_18_explorer.svg)](https://travis-ci.org/dedis/student_18_explorer)
 
 ### Explorer
 

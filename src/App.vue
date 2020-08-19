@@ -46,7 +46,7 @@
     <Explorer v-if="socket" :roster="roster" :socket="socket" :key="JSON.stringify(chosenSkipchain)"/>
 
     <v-footer :fixed="fixed" app>
-      <span style="padding-left: 1rem">&copy; DEDIS 2018 - Student Project</span>
+      <span style="padding-left: 1rem">&copy; DEDIS 2020 - <a href="https://github.com/dedis/skipchain-explorer">Github</a></span>
       <span style="padding-left: 1rem">v.{{version}}</span>
     </v-footer>
   </v-app>

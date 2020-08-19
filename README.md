@@ -1,5 +1,9 @@
 # Skipchain explorer
 
+<div align="center">
+    <img src="public/logo-full.png">
+</div>
+
 [![DEDIS deployment](https://github.com/dedis/skipchain-explorer/workflows/DEDIS%20deployment/badge.svg)](https://github.com/dedis/skipchain-explorer/actions?query=workflow%3A%22DEDIS+deployment%22)
 [![build](https://img.shields.io/travis/dedis/student_18_explorer.svg)](https://travis-ci.org/dedis/student_18_explorer)
 

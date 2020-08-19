@@ -1,0 +1,33 @@
+name: DEDIS deployment
+
+on:
+  push:
+    branches: [ production ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v1.1.0
+      with:
+        version: 12.x
+
+    - name: Install dependencies
+      run: |
+        yarn install
+
+    - name: Build
+      run: yarn run build
+    
+    - name: Sync
+      env:
+        dest: '${{secrets.DEPLOY_USER}}@${{secrets.DEPLOY_ADDR}}:www'
+      run: |
+        echo "${{secrets.DEPLOY_KEY}}" > deploy_key
+        chmod 600 ./deploy_key
+        rsync -chav --delete \
+          -e 'ssh -p ${{secrets.DEPLOY_PORT}} -i ./deploy_key -o StrictHostKeyChecking=no' \
+          ./dist/* ${{env.dest}}

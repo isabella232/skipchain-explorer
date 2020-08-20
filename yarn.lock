@@ -689,13 +689,13 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@dedis/cothority@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@dedis/cothority/-/cothority-3.5.1.tgz#85e093cb45cc69bc9acdd6fdc3b808a07cbd7dd1"
-  integrity sha512-RgIlVHOdh00YracisIzn/lWRVjzcqHHukZypMKMhYCiLb7wMZtLmPHPKTZnQqwFUUWeRcdlte/1EiXodF2NZ4A==
+"@dedis/cothority@^3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@dedis/cothority/-/cothority-3.5.2.tgz#eb18ed9319bf47bc1aba0a3247dacfa47d8130bd"
+  integrity sha512-5X4XhqTVmsE1i1ilBygnCE88u/ssbwF7lN6/0s/NzWa8UIzO3S8mAGAg28VOID/pMDAhovcS/GuZ0OSX8EUGgA==
   dependencies:
     "@babel/polyfill" "^7.2.5"
-    "@dedis/kyber" "^3.4.3"
+    "@dedis/kyber" "^3.4.4"
     "@ethersproject/abi" "^5.0.2"
     "@ethersproject/bignumber" "^5.0.5"
     "@stablelib/blake2xs" "^0.10.4"
@@ -720,15 +720,17 @@
     util "^0.11.1"
     ws "^6.1.2"
 
-"@dedis/kyber@^3.4.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@dedis/kyber/-/kyber-3.4.3.tgz#b2a77e104569127cf1fa1c75c08ef2ec5eae9e02"
-  integrity sha512-II0acwZqD4mxgzbO4Mck6Hnez3qA6hgL90pD/D1OGO53QCZPORQvrBfVCGU77BJn8ZHlwQQRbsPin4OcIZ/GjQ==
+"@dedis/kyber@^3.4.4":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@dedis/kyber/-/kyber-3.4.4.tgz#2a8fec9c59078a4c3f11f6876c9cf2b203a01509"
+  integrity sha512-RarB9jDqni8sb1v+ah1pdC7jC0gsLGcqDTwO3TVf4PWsPksVR1iQtKbfoPf6bhOXiN5T91l+Eq1gadh1ZFSU1Q==
   dependencies:
     "@stablelib/blake2xs" "^0.10.4"
+    "@types/bn.js" "^4.11.6"
+    "@types/elliptic" "^6.4.12"
     bn.js "^5.1.2"
     crypto-browserify "^3.12.0"
-    elliptic "^6.4.1"
+    elliptic "^6.5.3"
     hash.js "^1.1.3"
 
 "@ethersproject/abi@^5.0.2":
@@ -984,7 +986,7 @@
   resolved "https://registry.yarnpkg.com/@stablelib/wipe/-/wipe-0.5.0.tgz#a682d5f9448e950e099e537e6f72fc960275d151"
   integrity sha1-poLV+USOlQ4JnlN+b3L8lgJ10VE=
 
-"@types/bn.js@^4.11.3":
+"@types/bn.js@*", "@types/bn.js@^4.11.3", "@types/bn.js@^4.11.6":
   version "4.11.6"
   resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-4.11.6.tgz#c306c70d9358aaea33cd4eda092a742b9505967c"
   integrity sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==
@@ -995,6 +997,13 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
+
+"@types/elliptic@^6.4.12":
+  version "6.4.12"
+  resolved "https://registry.yarnpkg.com/@types/elliptic/-/elliptic-6.4.12.tgz#e8add831f9cc9a88d9d84b3733ff669b68eaa124"
+  integrity sha512-gP1KsqoouLJGH6IJa28x7PXb3cRqh83X8HCLezd2dF+XcAIMKYv53KV+9Zn6QA561E120uOqZBQ+Jy/cl+fviw==
+  dependencies:
+    "@types/bn.js" "*"
 
 "@types/ethereumjs-abi@^0.6.3":
   version "0.6.3"
@@ -2521,9 +2530,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001111:
-  version "1.0.30001115"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001115.tgz#c04cd828883ba47f6f776312e0817bcc9040cfa4"
-  integrity sha512-NZrG0439ePYna44lJX8evHX2L7Z3/z3qjVLnHgbBb/duNEnGo348u+BQS5o4HTWcrb++100dHFrU36IesIrC1Q==
+  version "1.0.30001116"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001116.tgz#f3a3dea347f9294a3bdc4292309039cc84117fb8"
+  integrity sha512-f2lcYnmAI5Mst9+g0nkMIznFGsArRmZ0qU+dnq8l91hymdc2J3SFbiPhOJEeDqC1vtE8nc1qNQyklzB8veJefQ==
 
 case-sensitive-paths-webpack-plugin@^2.2.0:
   version "2.3.0"
@@ -3984,11 +3993,11 @@ ejs@^2.6.1:
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
 electron-to-chromium@^1.3.523:
-  version "1.3.534"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.534.tgz#fc7af8518dd00a5b22a24aed3f116b5d097e2330"
-  integrity sha512-7x2S3yUrspNHQOoPk+Eo+iHViSiJiEGPI6BpmLy1eT2KRNGCkBt/NUYqjfXLd1DpDCQp7n3+LfA1RkbG+LqTZQ==
+  version "1.3.539"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.539.tgz#9952fb0bf3fb4295282e7df35f6e7a2a8b89d3fd"
+  integrity sha512-rM0LWDIstdqfaRUADZetNrL6+zd/0NBmavbMEhBXgc2u/CC1d1GaDyN5hho29fFvBiOVFwrSWZkzmNcZnCEDog==
 
-elliptic@^6.4.1, elliptic@^6.5.2, elliptic@^6.5.3:
+elliptic@^6.5.2, elliptic@^6.5.3:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.3.tgz#cb59eb2efdaf73a0bd78ccd7015a62ad6e0f93d6"
   integrity sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==

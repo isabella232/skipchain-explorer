@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panel expand>
+  <v-expansion-panel :value=0>
     <v-expansion-panel-content>
       <template slot="header">
         <div>

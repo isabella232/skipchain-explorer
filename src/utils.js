@@ -3,6 +3,7 @@ import 'buffer'
 import { Darc } from '@dedis/cothority/darc'
 import { Roster } from '@dedis/cothority/network'
 import { ChainConfig } from '@dedis/cothority/byzcoin'
+import { Read, Write } from '@dedis/cothority/calypso'
 import { ProjectData } from '@/proto'
 import moment from 'moment'
 import varint from 'varint'
@@ -37,7 +38,7 @@ function hex2Bytes (hex) {
 
 function formatArg (name, value) {
   try {
-    if (name === 'config.darc' || name === 'darc.darc' || name === 'evolve_unrestricted.darc') {
+    if (name === 'config.darc' || name === 'darc.darc' || name === 'evolve_unrestricted.darc' || name === 'evolve.darc') {
       const darc = Darc.decode(value)
       return `DARC: ${darc.description.toString()}, rules: ${darc.rules.toString()}`
     }
@@ -68,6 +69,15 @@ function formatArg (name, value) {
     if (name === 'update.projectData' || name === 'odysseyproject.projectData') {
       const data = JSON.stringify(ProjectData.decode(value))
       return `Value: ${data}`
+    }
+    if (name === 'calypsoRead.read') {
+      const data = Read.decode(value)
+      return `Value: Requesting read on instance ${bytes2Hex(data.write)}, rencrypt to key ${bytes2Hex(data.xc)}`
+    }
+    if (name === 'calypsoWrite.write') {
+      const data = Write.decode(value)
+    console.log("cw", data)
+      return `Value: Wrote secret data to ${data.extradata}, encrypted with encrypted symmetric key [${bytes2Hex(data.u)}, ${bytes2Hex(data.e)}], using LTS id ${bytes2Hex(data.ltsid)}`
     }
   } catch (e) {
     // If we fail to format specially, then do nothing; fall thru to default format.

@@ -36,10 +36,10 @@ export default {
   },
   mounted: function () {
     const header = DataHeader.decode(this.block.data)
-
+    console.log({header})
     this.header = {
       clienttransactionhash: bytes2Hex(header.clientTransactionHash),
-      statechangehash: bytes2Hex(header.stateChangeHash),
+      statechangehash: bytes2Hex(header.statechangeshash),
       trieroot: bytes2Hex(header.trieRoot),
       timestamp: new Date(parseInt(header.timestamp / 1000000))
     }

@@ -100,24 +100,11 @@ export default {
       blocks: [],
       chosenSkipchain: this.$route.params.chain,
       getBlockRoster: (index) => {
-        const target = this.blocks[index]
-
-        for (let i = index - 1; i >= 0; i--) {
-          const block = this.blocks[i]
-
-          if (block.loaded) {
-            for (let k = 0; k < block.forward.length; k++) {
-              const fl = block.forward[k]
-              if (target.hash && fl.to.equals(target.hash) && fl.newRoster) {
-                return fl.newRoster
-              }
-            }
-
-            return block.roster
-          }
-        }
-
-        return this.blocks[0].roster
+        // We used to load the roster from the block, but that means that old
+        // blocks with old rosters cannot be fetched from servers which are no
+        // longer running.  So now just use the newest block we currently know
+        // about.
+        return this.blocks[this.blocks.length-1].roster
       },
       getBlockByIndex: (i, shouldNotUpdateBlocks) => {
         const idx = this.blocks.findIndex(b => b.index === i)

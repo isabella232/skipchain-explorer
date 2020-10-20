@@ -1,9 +1,9 @@
 <template>
-  <v-expansion-panel expand>
+  <v-expansion-panel :value=0>
     <v-expansion-panel-content>
       <template slot="header">
         <div>
-          <strong>Spawn {{ instruction.spawn.contractid }} {{ instruction.instanceid }}</strong>
+          <strong>Spawn {{ instruction.spawn.contractid }} from instance {{ iid }}</strong>
         </div>
       </template>
 
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { formatArg } from '../../utils'
+import { formatArg, bytes2Hex } from '../../utils'
 
 export default {
   props: ['instruction'],
@@ -31,12 +31,14 @@ export default {
     args: function () {
       return this.instruction.spawn.args.map((arg) => {
         var contract = this.instruction.spawn.contractid
-        console.log('formatting', arg)
         return {
           name: `Name: ${arg.name}`,
           value: formatArg(`${contract}.${arg.name}`, arg.value)
         }
       })
+    },
+    iid: function () {
+      return bytes2Hex(this.instruction.instanceid)
     }
   }
 }

@@ -49,7 +49,7 @@
                 <p v-if="isByzcoin">
                   <ByzcoinData :block="block"/>
                 </p>
-                <p v-if="isEvoting">
+                <p v-else-if="isEvoting">
                   <Evoting :block="block" :roster="block.roster"/>
                 </p>
                 <p v-else>
@@ -115,6 +115,12 @@ export default {
     'Evoting': Evoting,
     'Verifier': Verifier
   },
+  created () {
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
   data: function () {
     return {
       /* 'show' is the name to be displayed, 'display' is the format
@@ -138,11 +144,6 @@ export default {
       infos: { next: '' }
     }
   },
-  mounted: function () {
-    if (!this.block || !this.block.loaded) {
-      this.getBlockByIndex(parseInt(this.$route.params.blockIndex))
-    }
-  },
   computed: {
     // finds the corresponding block whose infos need to be displayed on the page according to the block hash showed in page link
     block: function () { return this.blocks.length ? this.blocks.find(({ index }) => (index === parseInt(this.$route.params.blockIndex))) : {} },
@@ -154,6 +155,11 @@ export default {
     }
   },
   methods: {
+    fetchData () {
+      if (!this.block || !this.block.loaded) {
+        this.getBlockByIndex(parseInt(this.$route.params.blockIndex))
+      }
+    },
     windowSize: function () {
       return window.innerWidth
     },

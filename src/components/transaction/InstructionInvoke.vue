@@ -1,9 +1,10 @@
 <template>
-  <v-expansion-panel>
+  <v-expansion-panel :value=0>
     <v-expansion-panel-content>
       <template slot="header">
         <div>
-          <strong>Invoke command {{ instruction.index + 1}}/{{ total }}: {{ instruction.invoke.command }}</strong>
+          <strong>On instance {{ iid }},
+           invoke command {{ instruction.index + 1}}/{{ total }}: {{ instruction.invoke.command }}</strong>
         </div>
       </template>
 
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import { formatArg } from '../../utils'
+import { formatArg, bytes2Hex } from '../../utils'
 
 export default {
   props: ['instruction', 'total'],
@@ -40,6 +41,9 @@ export default {
           value: formatArg(`${this.instruction.invoke.command}.${arg.name}`, uint)
         }
       })
+    },
+    iid: function () {
+      return bytes2Hex(this.instruction.instanceid)
     }
   }
 }

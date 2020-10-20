@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import { Roster } from '@dedis/cothority/network'
+import { curve } from '@dedis/kyber'
+import { Roster, ServerIdentity } from '@dedis/cothority/network'
 import { SkipchainRPC } from '@dedis/cothority/skipchain'
 import Explorer from './Explorer'
 import UserRoster from './components/UserRoster'
@@ -94,9 +95,36 @@ export default {
       chosenSkipchain: this.$route.params.chain
     }
   },
-  /* -- my local roster, to be updated once we'll be dealing with DEDIS' skipchains */
   mounted: function () {
-    this.connectToCothority(defaultRoster)
+    // we should be able to get this from this.$route.query, but sometimes it
+    // is not populated by the time we are called?
+    let params = new URLSearchParams(window.location.search);
+    
+    // With a URL ending like this, connect to a different cothority.
+    // https://host.example.com/?leader=conode.example.com
+    var ro
+    if (params.get('leader')) {
+      var leader = params.get('leader')
+      if (typeof leader === 'string') {
+        leader = [ leader ]
+      }
+      var list = leader.map((server) => {
+        return new ServerIdentity({
+          address: server,
+          url: `https://${server}/`,
+          // Put a dummy public key in; the real roster will be downloaded
+          // from the leader (and, unfortunately, trusted).
+          public: curve.newCurve("edwards25519").point().toProto(),
+        })
+      })
+      ro = new Roster({ list })
+      console.log("roster from params:", ro)
+    } else {
+      console.log("roster from default")
+      ro = Roster.fromTOML(defaultRoster)
+    }
+
+    this.connectToCothority(ro)
   },
   methods: {
     chooseSkipchain: function (e, path) {
@@ -108,7 +136,7 @@ export default {
       }
 
       // Make it possible for connectToCothority to request that we jump
-      // directly tot he status page.
+      // directly to the status page.
       if (path) {
         this.$router.push(`/${v}/${path}`)
       } else {
@@ -119,7 +147,7 @@ export default {
     },
 
     connectToCothority: function (ro) {
-      this.roster = Roster.fromTOML(ro)
+      this.roster = ro
       this.socket = new SkipchainRPC(this.roster)
 
       /* get all skipchains IDs and map each of them to its hexadecimal form */
@@ -128,7 +156,7 @@ export default {
           this.skipchains = ids.map(bytes2Hex)
           window.localStorage.setItem(STORE_KEY_SKIPCHAINS, JSON.stringify(this.skipchains))
 
-          if (this.skipchains.length >= 1 && !this.$route.params.chain) {
+          if (!this.$route.params.chain && this.skipchains.length >= 1) {
             console.log('auto choose 1st skipchain')
             this.chooseSkipchain(this.skipchains[0], 'status')
           }

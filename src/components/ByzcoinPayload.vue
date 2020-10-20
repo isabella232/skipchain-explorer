@@ -48,14 +48,13 @@ export default {
     if (!body.txresults[0].clienttransaction.instructions[0].invoke && !body.txresults[0].clienttransaction.instructions[0].spawn) {
       this.noPayload = true
     }
-
+    
     this.body = body.txresults.map(tx => ({
       accepted: tx.accepted,
       instructions: tx.clienttransaction.instructions.map((instr, idx) => ({
         index: idx,
-        instanceid: parseInt(bytes2Hex(instr.instanceID)) >= 0 ? parseInt(bytes2Hex(instr.instanceID)) : bytes2Hex(instr.instanceID),
+        instanceid: instr.instanceID,
         signatures: instr.signatures.map((s, idx) => ({
-          signature: toUUID(bytes2Hex(s)),
           signer: instr.signerIdentities[idx].toString()
         })),
         spawn: instr.spawn && {

@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "prelint:fix": "node_modules/.bin/standard --fix --parser vue-eslint-parser --plugin eslint-plugin-vue '**/*.{js,vue}'",
     "prelint": "node_modules/.bin/standard --parser vue-eslint-parser --plugin eslint-plugin-vue '**/*.{js,vue}'",
     "lint": "vue-cli-service lint",
     "pretest": "node_modules/.bin/standard --parser vue-eslint-parser --plugin eslint-plugin-vue '**/*.{js,vue}'",

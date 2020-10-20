@@ -98,8 +98,8 @@ export default {
   mounted: function () {
     // we should be able to get this from this.$route.query, but sometimes it
     // is not populated by the time we are called?
-    let params = new URLSearchParams(window.location.search);
-    
+    let params = new URLSearchParams(window.location.search)
+
     // With a URL ending like this, connect to a different cothority.
     // https://host.example.com/?leader=conode.example.com
     var ro
@@ -114,13 +114,13 @@ export default {
           url: `https://${server}/`,
           // Put a dummy public key in; the real roster will be downloaded
           // from the leader (and, unfortunately, trusted).
-          public: curve.newCurve("edwards25519").point().toProto(),
+          public: curve.newCurve('edwards25519').point().toProto()
         })
       })
       ro = new Roster({ list })
-      console.log("roster from params:", ro)
+      console.log('roster from params:', ro)
     } else {
-      console.log("roster from default")
+      console.log('roster from default')
       ro = Roster.fromTOML(defaultRoster)
     }
 

@@ -104,7 +104,7 @@ export default {
         // blocks with old rosters cannot be fetched from servers which are no
         // longer running.  So now just use the newest block we currently know
         // about.
-        return this.blocks[this.blocks.length-1].roster
+        return this.blocks[this.blocks.length - 1].roster
       },
       getBlockByIndex: (i, shouldNotUpdateBlocks) => {
         const idx = this.blocks.findIndex(b => b.index === i)

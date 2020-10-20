@@ -17,7 +17,7 @@
 </template>
 <script>
 import { DataBody } from '@dedis/cothority/byzcoin/proto'
-import { toUUID, bytes2Hex } from '../utils'
+import { bytes2Hex } from '../utils'
 import Transaction from './transaction/Transaction'
 import dump from 'buffer-hexdump'
 
@@ -48,7 +48,7 @@ export default {
     if (!body.txresults[0].clienttransaction.instructions[0].invoke && !body.txresults[0].clienttransaction.instructions[0].spawn) {
       this.noPayload = true
     }
-    
+
     this.body = body.txresults.map(tx => ({
       accepted: tx.accepted,
       instructions: tx.clienttransaction.instructions.map((instr, idx) => ({

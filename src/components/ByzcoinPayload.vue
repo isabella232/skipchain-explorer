@@ -17,7 +17,6 @@
 </template>
 <script>
 import { DataBody } from '@dedis/cothority/byzcoin/proto'
-import { bytes2Hex } from '../utils'
 import Transaction from './transaction/Transaction'
 import dump from 'buffer-hexdump'
 
@@ -43,7 +42,6 @@ export default {
   },
   mounted: function () {
     const body = DataBody.decode(this.block.payload)
-    const decoder = new TextDecoder('utf-8')
 
     if (!body.txresults[0].clienttransaction.instructions[0].invoke && !body.txresults[0].clienttransaction.instructions[0].spawn) {
       this.noPayload = true
@@ -66,14 +64,7 @@ export default {
         },
         invoke: instr.invoke && {
           command: instr.invoke.command,
-          args: instr.invoke.args.map(arg => ({
-            name: arg.name,
-            value: arg.value.constructor === Uint8Array
-              ? (arg.value.length) > 15
-                ? bytes2Hex(arg.value).slice(0, 15) + '...'
-                : bytes2Hex(arg.value)
-              : decoder.decode(arg.value)
-          }))
+          args: instr.invoke.args
         }
       }))
     }))

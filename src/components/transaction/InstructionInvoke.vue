@@ -31,14 +31,9 @@ export default {
   computed: {
     args: function () {
       return this.instruction.invoke.args.map((arg) => {
-        // For invokes, we put the command before the arg name.
-        const uint = new Uint8Array(arg.value.length)
-        for (var i = 0, j = arg.value.length; i < j; ++i) {
-          uint[i] = arg.value.charCodeAt(i)
-        }
         return {
           name: `Name: ${arg.name}`,
-          value: formatArg(`${this.instruction.invoke.command}.${arg.name}`, uint)
+          value: formatArg(`${this.instruction.invoke.command}.${arg.name}`, arg.value)
         }
       })
     },

@@ -3,7 +3,7 @@ import 'buffer'
 import { Darc } from '@dedis/cothority/darc'
 import { Roster } from '@dedis/cothority/network'
 import { ChainConfig } from '@dedis/cothority/byzcoin'
-import { Read, Write } from '@dedis/cothority/calypso'
+import { Read, Write, LtsInstanceInfo } from '@dedis/cothority/calypso'
 import { ProjectData } from '@/proto'
 import { PointFactory } from '@dedis/kyber'
 import moment from 'moment'
@@ -79,6 +79,11 @@ function formatArg (name, value) {
       const data = Write.decode(value)
       return `Value: Wrote secret data to ${data.extradata}, encrypted with encrypted symmetric key [${bytes2Hex(data.u)}, ${bytes2Hex(data.e)}], using LTS id ${bytes2Hex(data.ltsid)}`
     }
+    if (name === 'longTermSecret.lts_instance_info') {
+      const li = LtsInstanceInfo.decode(value)
+      const r = li.roster.list.map(x => `${x.description} ~ ${x.getWebSocketAddress()}`).join(', ')
+      return `Value: Long Term Secret entrusted to roster ${r}`
+    }
   } catch (e) {
     // If we fail to format specially, then do nothing; fall thru to default format.
     console.log('failed to format value', bytes2Hex(value), 'err', e)
@@ -86,6 +91,7 @@ function formatArg (name, value) {
   }
 
   // default formatting: hex
+  console.log('Default format for name', name)
   return `Value: ${bytes2Hex(value)}`
 }
 
